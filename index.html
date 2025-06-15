@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Countdown to JEE 2027</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -53,29 +53,31 @@
   </div>
 
   <script>
-    function updateCountdown() {
-      const jeeDate = new Date("January 24, 2027 09:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = jeeDate - now;
+    window.onload = function () {
+      function updateCountdown() {
+        const jeeDate = new Date("January 24, 2027 09:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = jeeDate - now;
 
-      if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "Exam Time! 💥";
-        return;
+        if (diff <= 0) {
+          document.getElementById("countdown").innerHTML = "Exam Time! 💥";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+      updateCountdown(); // Run immediately
+      setInterval(updateCountdown, 1000); // Update every second
+    };
   </script>
 </body>
 </html>
