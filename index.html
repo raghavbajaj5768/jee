@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JEE 2027 Countdown</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown to JEE 2027</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #141e30, #243b55);
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
       color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding-top: 15vh;
     }
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 2em;
+      margin-bottom: 40px;
     }
     #countdown {
-      font-size: 2rem;
+      font-size: 2.5em;
       font-weight: bold;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .time {
       background-color: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 10px;
-      display: inline-block;
+      min-width: 100px;
+    }
+    .label {
+      display: block;
+      font-size: 0.6em;
+      margin-top: 5px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
-  <div id="countdown"></div>
+  <div id="countdown">
+    <div class="time"><span id="days">--</span><span class="label">Days</span></div>
+    <div class="time"><span id="hours">--</span><span class="label">Hours</span></div>
+    <div class="time"><span id="minutes">--</span><span class="label">Minutes</span></div>
+    <div class="time"><span id="seconds">--</span><span class="label">Seconds</span></div>
+  </div>
 
   <script>
-    // Set the target date to 6th January 2027 (assumption based on past trend)
-    const targetDate = new Date("2027-01-06T00:00:00").getTime();
-
     function updateCountdown() {
+      const jeeDate = new Date("January 24, 2027 09:00:00").getTime();
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const diff = jeeDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML =
-        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "JEE 2027 is here! Best of luck!";
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "Exam Time! 💥";
+        return;
       }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
     }
 
     updateCountdown();
