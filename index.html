@@ -3,42 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown to JEE 2027</title>
+  <title>JEE 2027 Countdown</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
       color: white;
+      font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      text-align: center;
+      margin: 0;
     }
+
     h1 {
-      font-size: 2em;
+      font-size: 2rem;
       margin-bottom: 40px;
     }
+
     #countdown {
-      font-size: 2.5em;
-      font-weight: bold;
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      font-size: 1.5rem;
+      text-align: center;
     }
-    .time {
+
+    .time-box {
       background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px;
+      padding: 15px 20px;
       border-radius: 10px;
-      min-width: 100px;
+      min-width: 80px;
     }
+
     .label {
-      display: block;
-      font-size: 0.6em;
-      margin-top: 5px;
+      font-size: 0.8rem;
+      margin-top: 8px;
       color: #ccc;
     }
   </style>
@@ -46,38 +46,48 @@
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
   <div id="countdown">
-    <div class="time"><span id="days">--</span><span class="label">Days</span></div>
-    <div class="time"><span id="hours">--</span><span class="label">Hours</span></div>
-    <div class="time"><span id="minutes">--</span><span class="label">Minutes</span></div>
-    <div class="time"><span id="seconds">--</span><span class="label">Seconds</span></div>
+    <div class="time-box">
+      <div id="days">--</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="time-box">
+      <div id="hours">--</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="time-box">
+      <div id="minutes">--</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="time-box">
+      <div id="seconds">--</div>
+      <div class="label">Seconds</div>
+    </div>
   </div>
 
   <script>
-    window.onload = function () {
-      function updateCountdown() {
-        const jeeDate = new Date("January 24, 2027 09:00:00").getTime();
-        const now = new Date().getTime();
-        const diff = jeeDate - now;
+    function updateCountdown() {
+      const jeeDate = new Date("2027-01-24T09:00:00+05:30"); // change if actual date is diff
+      const now = new Date();
+      const diff = jeeDate - now;
 
-        if (diff <= 0) {
-          document.getElementById("countdown").innerHTML = "Exam Time! 💥";
-          return;
-        }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById("days").textContent = days;
-        document.getElementById("hours").textContent = hours;
-        document.getElementById("minutes").textContent = minutes;
-        document.getElementById("seconds").textContent = seconds;
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>JEE 2027 has begun!</h2>";
+        return;
       }
 
-      updateCountdown(); // Run immediately
-      setInterval(updateCountdown, 1000); // Update every second
-    };
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
