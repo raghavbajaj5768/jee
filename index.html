@@ -15,6 +15,13 @@
       font-size: 2em;
       margin: 20px;
     }
+    .quote-box {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.2em;
+      color: #ccc;
+      padding: 0 20px;
+    }
     .search-container {
       margin-top: 40px;
     }
@@ -39,19 +46,16 @@
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
   <div class="time" id="countdown">Loading...</div>
+  <div id="quote" class="quote-box">Loading inspiration...</div>
 
-  <!-- Google Search Bar -->
   <div class="search-container">
-    <form id="searchForm" action="https://www.google.com/search" method="GET">
-      <input 
-        type="text" 
-        id="searchBox" 
-        name="q"
-        placeholder="Search Google..." 
-        class="search-box"
-      />
-      <button type="submit" class="search-button">Search</button>
-    </form>
+    <input 
+      type="text" 
+      id="searchBox" 
+      placeholder="Search Google..." 
+      class="search-box"
+    />
+    <button onclick="searchGoogle()" class="search-button">Search</button>
   </div>
 
   <script>
@@ -74,16 +78,49 @@
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    // Optional: If you want to handle Enter key manually (form does it by default)
-    document.getElementById("searchBox").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("searchForm").submit();
-      }
-    });
+    const quotes = [
+      "Success is the sum of small efforts, repeated day in and day out. – Robert Collier",
+      "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+      "The future depends on what you do today. – Mahatma Gandhi",
+      "Push yourself, because no one else is going to do it for you.",
+      "Dream it. Wish it. Do it.",
+      "Doubt kills more dreams than failure ever will.",
+      "Stay consistent. Your future self will thank you.",
+      "You don’t have to be great to start, but you have to start to be great.",
+      "If it doesn’t challenge you, it won’t change you.",
+      "Work hard in silence, let success make the noise.",
+      "जो मेहनत से डरेगा, वो जीत से भी दूर रहेगा।",
+      "सपने वो नहीं जो सोते वक्त आते हैं, सपने वो हैं जो नींद नहीं आने देते। – A.P.J. Abdul Kalam",
+      "हर दिन एक नई शुरुआत है — कभी हार मत मानो।",
+      "पढ़ाई जितनी सच्चाई से करोगे, रिजल्ट उतना ही शानदार आएगा।",
+      "Focus on your goal. Don’t look in any direction but ahead."
+    ];
 
+    function showQuote() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").innerText = quote;
+    }
+
+    function searchGoogle() {
+      const query = document.getElementById("searchBox").value.trim();
+      if (query !== "") {
+        const url = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        window.location.href = url; // opens in the SAME tab
+      }
+    }
+
+    // Quote rotation + countdown + search enter handler
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    showQuote();
+    setInterval(showQuote, 30000); // new quote every 30 seconds
+
+    document.getElementById("searchBox").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        searchGoogle();
+      }
+    });
   </script>
 </body>
 </html>
