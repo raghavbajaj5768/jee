@@ -2,76 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JEE 2027 Countdown</title>
   <style>
     body {
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding-top: 100px;
     }
-
     h1 {
       font-size: 2rem;
       margin-bottom: 40px;
     }
-
-    #countdown {
+    .timer {
       display: flex;
+      justify-content: center;
       gap: 20px;
-      font-size: 1.5rem;
-      text-align: center;
     }
-
     .time-box {
       background-color: rgba(255, 255, 255, 0.1);
-      padding: 15px 20px;
-      border-radius: 10px;
-      min-width: 80px;
+      padding: 20px 30px;
+      border-radius: 12px;
     }
-
+    .time-box span {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+    }
     .label {
-      font-size: 0.8rem;
-      margin-top: 8px;
-      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
-  <div id="countdown">
+  <div class="timer">
     <div class="time-box">
-      <div id="days">--</div>
+      <span id="days">--</span>
       <div class="label">Days</div>
     </div>
     <div class="time-box">
-      <div id="hours">--</div>
+      <span id="hours">--</span>
       <div class="label">Hours</div>
     </div>
     <div class="time-box">
-      <div id="minutes">--</div>
+      <span id="minutes">--</span>
       <div class="label">Minutes</div>
     </div>
     <div class="time-box">
-      <div id="seconds">--</div>
+      <span id="seconds">--</span>
       <div class="label">Seconds</div>
     </div>
   </div>
 
   <script>
+    const targetDate = new Date("January 15, 2027 09:00:00").getTime();
+
     function updateCountdown() {
-      const jeeDate = new Date("2027-01-24T09:00:00+05:30"); // change if actual date is diff
-      const now = new Date();
-      const diff = jeeDate - now;
+      const now = new Date().getTime();
+      const diff = targetDate - now;
 
       if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "<h2>JEE 2027 has begun!</h2>";
+        document.querySelector(".timer").innerHTML = "<h2>Exam Started!</h2>";
         return;
       }
 
@@ -86,8 +82,8 @@
       document.getElementById("seconds").textContent = seconds;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    updateCountdown(); // initial call
+    setInterval(updateCountdown, 1000); // update every second
   </script>
 </body>
 </html>
