@@ -14,15 +14,45 @@
       font-size: 2em;
       margin: 20px;
     }
+    .search-container {
+      margin-top: 40px;
+    }
+    .search-box {
+      padding: 10px;
+      width: 300px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    .search-button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
   <div class="time" id="countdown">Loading...</div>
 
+  <!-- Google Search Bar -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      id="searchBox" 
+      placeholder="Search Google..." 
+      class="search-box"
+    />
+    <button onclick="searchGoogle()" class="search-button">Search</button>
+  </div>
+
   <script>
     function updateCountdown() {
-      const examDate = new Date("2027-01-24T09:00:00"); // Change if needed
+      const examDate = new Date("2027-01-24T09:00:00");
       const now = new Date();
       const diff = examDate - now;
 
@@ -38,6 +68,14 @@
 
       document.getElementById("countdown").innerText =
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    function searchGoogle() {
+      const query = document.getElementById("searchBox").value.trim();
+      if (query !== "") {
+        const url = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        window.open(url, "_blank");
+      }
     }
 
     setInterval(updateCountdown, 1000);
