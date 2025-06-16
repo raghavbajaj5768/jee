@@ -1,73 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JEE 2027 Countdown</title>
+  <title>Countdown to JEE 2027</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: #0f2027;
       color: white;
       text-align: center;
-      padding-top: 100px;
+      font-family: sans-serif;
+      padding-top: 10%;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-    }
-    .timer {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    .time-box {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 20px 30px;
-      border-radius: 12px;
-    }
-    .time-box span {
-      display: block;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .label {
-      font-size: 0.9rem;
-      margin-top: 5px;
+    .time {
+      font-size: 2em;
+      margin: 20px;
     }
   </style>
 </head>
 <body>
   <h1>Countdown to JEE 2027 (January Attempt)</h1>
-  <div class="timer">
-    <div class="time-box">
-      <span id="days">--</span>
-      <div class="label">Days</div>
-    </div>
-    <div class="time-box">
-      <span id="hours">--</span>
-      <div class="label">Hours</div>
-    </div>
-    <div class="time-box">
-      <span id="minutes">--</span>
-      <div class="label">Minutes</div>
-    </div>
-    <div class="time-box">
-      <span id="seconds">--</span>
-      <div class="label">Seconds</div>
-    </div>
-  </div>
+  <div class="time" id="countdown">Loading...</div>
 
   <script>
-    const targetDate = new Date("January 15, 2027 09:00:00").getTime();
-
     function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+      const examDate = new Date("2027-01-24T09:00:00"); // Change if needed
+      const now = new Date();
+      const diff = examDate - now;
 
       if (diff <= 0) {
-        document.querySelector(".timer").innerHTML = "<h2>Exam Started!</h2>";
+        document.getElementById("countdown").innerText = "The exam has started!";
         return;
       }
 
@@ -76,14 +36,12 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
+      document.getElementById("countdown").innerText =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    updateCountdown(); // initial call
-    setInterval(updateCountdown, 1000); // update every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
