@@ -42,13 +42,16 @@
 
   <!-- Google Search Bar -->
   <div class="search-container">
-    <input 
-      type="text" 
-      id="searchBox" 
-      placeholder="Search Google..." 
-      class="search-box"
-    />
-    <button onclick="searchGoogle()" class="search-button">Search</button>
+    <form id="searchForm" action="https://www.google.com/search" method="GET">
+      <input 
+        type="text" 
+        id="searchBox" 
+        name="q"
+        placeholder="Search Google..." 
+        class="search-box"
+      />
+      <button type="submit" class="search-button">Search</button>
+    </form>
   </div>
 
   <script>
@@ -71,18 +74,11 @@
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    function searchGoogle() {
-      const query = document.getElementById("searchBox").value.trim();
-      if (query !== "") {
-        const url = "https://www.google.com/search?q=" + encodeURIComponent(query);
-        window.open(url, "_blank");
-      }
-    }
-
-    // Add Enter key support
+    // Optional: If you want to handle Enter key manually (form does it by default)
     document.getElementById("searchBox").addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
-        searchGoogle();
+        event.preventDefault();
+        document.getElementById("searchForm").submit();
       }
     });
 
