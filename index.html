@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>New Tab</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     body {
       background: #0f2027;
@@ -93,7 +94,92 @@
       "सपने वो नहीं जो सोते वक्त आते हैं, सपने वो हैं जो नींद नहीं आने देते। – A.P.J. Abdul Kalam",
       "हर दिन एक नई शुरुआत है — कभी हार मत मानो।",
       "पढ़ाई जितनी सच्चाई से करोगे, रिजल्ट उतना ही शानदार आएगा।",
-      "Focus on your goal. Don’t look in any direction but ahead."
+      "Focus on your goal. Don’t look in any direction but ahead.",
+      "Hard work beats talent when talent doesn’t work hard.",
+      "Discipline is doing what needs to be done, even if you don’t want to.",
+      "The best way to get started is to quit talking and begin doing.",
+      "Great things never come from comfort zones.",
+      "Wake up with determination. Go to bed with satisfaction.",
+      "Difficult roads often lead to beautiful destinations.",
+      "Little things make big days.",
+      "It's going to be hard, but hard does not mean impossible.",
+      "Don’t limit your challenges. Challenge your limits.",
+      "You are capable of amazing things.",
+      "Believe you can and you’re halfway there. – Theodore Roosevelt",
+      "Success doesn’t just find you. You have to go out and get it.",
+      "You don’t need to see the whole staircase, just take the first step.",
+      "Push harder than yesterday if you want a different tomorrow.",
+      "Stop doubting yourself, work hard, and make it happen.",
+      "Doubt is a killer. You just have to know who you are and what you stand for. – Jennifer Lopez",
+      "Winners are not people who never fail, but people who never quit.",
+      "Be stronger than your excuses.",
+      "Study now and be proud later.",
+      "Effort is what separates the successful from the rest.",
+      "When you feel like quitting, think about why you started.",
+      "Success is no accident. It is hard work, perseverance, learning, and sacrifice.",
+      "Every morning you have two choices: continue to sleep with your dreams or wake up and chase them.",
+      "Patience, persistence, and perspiration make an unbeatable combination for success. – Napoleon Hill",
+      "Results happen over time, not overnight. Work hard, stay consistent, and be patient.",
+      "Success isn’t always about greatness. It’s about consistency.",
+      "When you study, remember you are not alone. Thousands are grinding with you. Stay with them.",
+      "A river cuts through rock not because of its power, but because of its persistence.",
+      "Excellence is not being the best; it is doing your best.",
+      "Be so good they can’t ignore you.",
+      "Forget the mistake. Remember the lesson.",
+      "The pain you feel today will be the strength you feel tomorrow.",
+      "Keep your eyes on the stars, and your feet on the ground. – Theodore Roosevelt",
+      "Never give up on a dream just because of the time it will take to accomplish it.",
+      "Success is never owned; it’s rented – and the rent is due every day.",
+      "It always seems impossible until it’s done. – Nelson Mandela",
+      "Strive for progress, not perfection.",
+      "You miss 100% of the shots you don’t take. – Wayne Gretzky",
+      "Act as if what you do makes a difference. It does. – William James",
+      "Small progress is still progress.",
+      "Your only limit is your mind.",
+      "Train your mind to be stronger than your emotions.",
+      "If you're tired, learn to rest, not quit.",
+      "Champions keep playing until they get it right. – Billie Jean King",
+      "Discipline is the bridge between goals and accomplishment. – Jim Rohn",
+      "The secret of getting ahead is getting started.",
+      "Don’t wait for opportunity. Create it.",
+      "Make each day your masterpiece. – John Wooden",
+      "You’ve got what it takes, but it will take everything you’ve got.",
+      "There is no elevator to success — you have to take the stairs.",
+      "Set a goal so big that you can’t achieve it until you grow into the person who can.",
+      "No pressure, no diamonds.",
+      "The harder you work for something, the greater you’ll feel when you achieve it.",
+      "Good things come to those who hustle.",
+      "Study hard. Stay humble.",
+      "Discomfort is the price of admission to a meaningful life.",
+      "Pain is temporary. GPA is forever. 😉",
+      "Worry less. Work more.",
+      "Burnout doesn’t come from hard work. It comes from unbalanced work.",
+      "Think like a proton — always positive.",
+      "Trust the process.",
+      "Don't be pushed around by the fears in your mind.",
+      "Be led by the dreams in your heart.",
+      "Success begins at the edge of your comfort zone.",
+      "Great minds discuss ideas; average minds discuss events. – Eleanor Roosevelt",
+      "Sometimes later becomes never. Do it now.",
+      "Make yourself proud.",
+      "Prove them wrong.",
+      "Plan your work, then work your plan.",
+      "Respect your efforts, respect yourself.",
+      "You can cry, you can scream, but don't you dare give up.",
+      "If you're going through hell, keep going. – Winston Churchill",
+      "The expert in anything was once a beginner.",
+      "Rise and grind.",
+      "Stay motivated. Stay dedicated.",
+      "Winners train. Losers complain.",
+      "Eat. Sleep. Study. Repeat.",
+      "Don't stop until you're proud.",
+      "Your struggle today is your strength tomorrow.",
+      "Success requires replacement of laziness with discipline.",
+      "Hard days are the best because that's when champions are made.",
+      "You don’t find willpower; you create it.",
+      "Clarity + Consistency = Confidence.",
+      "Make it happen. Shock everyone.",
+      "A little progress each day adds up to big results."
     ];
 
     function showQuote() {
@@ -104,23 +190,21 @@
     function searchGoogle() {
       const query = document.getElementById("searchBox").value.trim();
       if (query !== "") {
-        const url = "https://www.google.com/search?q=" + encodeURIComponent(query);
-        window.location.href = url; // opens in the SAME tab
+        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
       }
     }
-
-    // Quote rotation + countdown + search enter handler
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    showQuote();
-    setInterval(showQuote, 30000); // new quote every 30 seconds
 
     document.getElementById("searchBox").addEventListener("keydown", function(event) {
       if (event.key === "Enter") {
         searchGoogle();
       }
     });
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    showQuote();
+    setInterval(showQuote, 30000); // Rotate every 30 sec
   </script>
 </body>
 </html>
